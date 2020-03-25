@@ -15,12 +15,4 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
-});
-
-Route::view('vista', 'welcome');
-
-Route::get('/prueba', function () {
-    return 'Hoila';
-});
-
-Route::resource('/pages', 'PageController'); //7 funciones 
+})->middleware('auth');
