@@ -24,3 +24,27 @@ Route::get('/eloquent', function () {
     }
     //return view('welcome');
 });
+
+Route::get('/posts', function () {
+    $posts =  Post::get();
+    foreach ($posts as $post) {
+        echo "
+        $post->id 
+        -{$post->user->name}-
+        $post->title <br>";
+    }
+    //return view('welcome');
+});
+
+use App\User;
+
+Route::get('/users', function () {
+    $users =  User::get();
+    foreach ($users as $user) {
+        echo "
+        $user->id 
+        -$user->name-
+        {$user->posts->count()} <br>";
+    }
+    //return view('welcome');
+});
