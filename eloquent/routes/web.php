@@ -48,3 +48,22 @@ Route::get('/users', function () {
     }
     //return view('welcome');
 });
+
+
+Route::get('/collections', function () {
+    $users =  User::all();
+    //dd($users->contains(4));
+    //dd($users->except([1, 2, 3]));
+
+    //dd($users->only(4));
+    //
+    //dd($users->find(4));
+
+    dd($users->load('posts'));
+});
+
+
+Route::get('/serialization', function () {
+    $users =  User::all();
+    dd($users->toJson());
+});
