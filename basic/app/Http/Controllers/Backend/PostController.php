@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use App\Post;
-use Illuminate\Http\Request;
+use App\Http\Requests\PostRequest;
 
 class PostController extends Controller
 {
@@ -35,9 +35,21 @@ class PostController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(PostRequest $request)
     {
-        //
+        //Guaradar 
+        $post = Post::create([
+            'user_id' => auth()->user()->id,
+        ] + $request->all());
+        //imagen
+
+        if ($request->file('image')) {
+            $post->image = $request->file('image')->store('public/posts');
+            $post->save();
+        }
+
+        //retornar
+        return back()->with('status', 'Creado con éxito');
     }
 
     /**

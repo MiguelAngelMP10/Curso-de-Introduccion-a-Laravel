@@ -25,7 +25,7 @@
 
                         <div class="form-group custom-file">
                             <input type="file" class="custom-file-input" name="image" id="image">
-                            <label class="custom-file-label" for="image" data-browse="Elige una imagen"><i class="far fa-file-image"></i> Elige una imagen</label>                           
+                            <label class="custom-file-label" for="image" data-browse="Elige una imagen">Elige una imagen</label>                           
                         </div>
                         
                         <div class="form-group">
