@@ -4,6 +4,7 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
+            {{ $posts->links() }}
             @foreach ($posts as $post)
                 <div class="card mb-4">
                     <div class="card-body">
@@ -21,6 +22,8 @@
                     </div>
                 </div>
             @endforeach
+            
+            {{ $posts->links() }}
         </div>
     </div>
 </div>
