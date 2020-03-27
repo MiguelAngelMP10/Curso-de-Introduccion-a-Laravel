@@ -7,7 +7,7 @@
                 <div class="card-header h2 text-center">
                     <i class="far fa-newspaper"></i> Articulos
                 <a href="{{route('posts.create') }}"  
-                class="btn btn-outline-success float-right"><i class="fas fa-plus-circle" style="white-space: nowrap;"></i>&nbsp;Crear</a>
+                    class="btn btn-outline-success float-right"><i class="fas fa-plus-circle" style="white-space: nowrap;"></i>&nbsp;Crear</a>
                 </div>
 
                 <div class="card-body">
