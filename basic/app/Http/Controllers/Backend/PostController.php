@@ -44,23 +44,12 @@ class PostController extends Controller
         //imagen
 
         if ($request->file('image')) {
-            $post->image = $request->file('image')->store('public/posts');
+            $post->image = $request->file('image')->store('posts', 'public');
             $post->save();
         }
 
         //retornar
         return back()->with('status', 'Creado con éxito');
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Post  $post
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Post $post)
-    {
-        //
     }
 
     /**
@@ -71,7 +60,7 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        //
+        return view('posts.edit',  compact('post'));
     }
 
     /**

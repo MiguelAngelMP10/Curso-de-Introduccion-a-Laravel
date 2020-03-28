@@ -3,8 +3,15 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
-            {{ $posts->links() }}
+        <div class="col-md-12">
+            <div class="row">
+                <div class="col-8">
+                    {{ $posts->links() }}
+                </div>
+                <div class="col-4">
+                    Total de regitros {{ $posts->total() }}
+                </div>
+            </div>
             @foreach ($posts as $post)
                 <div class="card mb-4">
                     <div class="card-body">
@@ -22,8 +29,15 @@
                     </div>
                 </div>
             @endforeach
-            
-            {{ $posts->links() }}
+            <div class="row">
+                <div class="col-8">
+                    {{ $posts->links() }}
+                </div>
+                <div class="col-4">
+                    Total de regitros {{ $posts->total() }}
+                </div>
+            </div>
+
         </div>
     </div>
 </div>
