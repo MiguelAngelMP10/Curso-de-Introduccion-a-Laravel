@@ -15,7 +15,13 @@
                     @endif
 
             @if ($errors->any())
-                <p>Hay errores!</p>
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
             @endif
 
 
@@ -23,7 +29,7 @@
 
                         <div class="form-group">
                             <label for="title" class="font-weight-bold">Titulo *:</label>
-                            <input id="Titulo" class="form-control" type="text" name="titulo" required value="{{ old('title', $post->title) }}">
+                            <input id="Titulo" class="form-control" type="text" name="title" required value="{{ old('title', $post->title) }}">
                         </div>
                         <div class="form-group">
                             <div class="row">

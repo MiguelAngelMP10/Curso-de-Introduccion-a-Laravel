@@ -60,7 +60,7 @@ class PostController extends Controller
         return view('posts.edit',  compact('post'));
     }
 
-    public function update(Request $request, Post $post)
+    public function update(PostRequest $request, Post $post)
     {
         $post->update($request->all());
         //imagen
