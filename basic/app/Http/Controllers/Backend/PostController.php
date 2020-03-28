@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\Backend;
 
+use App\Http\Requests\PostRequest;
 use App\Http\Controllers\Controller;
 use App\Post;
-use App\Http\Requests\PostRequest;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
 {
@@ -52,27 +54,23 @@ class PostController extends Controller
         return back()->with('status', 'Creado con éxito');
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Post  $post
-     * @return \Illuminate\Http\Response
-     */
+
     public function edit(Post $post)
     {
         return view('posts.edit',  compact('post'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Post  $post
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, Post $post)
     {
-        //
+        $post->update($request->all());
+        //imagen
+        if ($request->file('image')) {
+            Storage::disk('public')->delete($post->image);
+            //eliminar imagen 
+            $post->image = $request->file('image')->store('posts', 'public');
+            $post->save();
+        }
+        return back()->with('status', 'Actuzalizado con éxito');
     }
 
     /**
@@ -83,6 +81,9 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
-        //
+        //eliminarcion de imagen
+        Storage::disk('public')->delete($post->image);
+        $post->delete();
+        return back()->with('status', 'Eliminado con éxito');
     }
 }

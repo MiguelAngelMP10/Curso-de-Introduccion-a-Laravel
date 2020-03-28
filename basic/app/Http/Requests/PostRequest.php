@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Post;
 use Illuminate\Foundation\Http\FormRequest;
 
 class PostRequest extends FormRequest
@@ -26,6 +27,7 @@ class PostRequest extends FormRequest
         return [
             'title' => 'required',
             'body' => 'required',
+            'image' => 'mimes:jpeg,bmp,png',
         ];
     }
 }

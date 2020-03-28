@@ -1,6 +1,5 @@
 @extends('layouts.app')
    
-
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
@@ -14,7 +13,10 @@
                             {{ session('status') }}
                         </div>
                     @endif
-                   <form action="{{ route('posts.update',$post) }}" method="POST" enctype="multipart/form-data">
+
+
+                   <form action="{{ route('posts.update', $post) }}" method="POST" enctype="multipart/form-data">
+
                         <div class="form-group">
                             <label for="title" class="font-weight-bold">Titulo *:</label>
                             <input id="Titulo" class="form-control" type="text" name="titulo" required value="{{ old('title', $post->title) }}">
@@ -48,11 +50,11 @@
                         <div class="form-group text-center">
                             @csrf
                             @method('PUT')
-                            <button type="submit" class="btn btn-outline-primary col-2 btn-lg"><i class="far fa-edit"></i> Actualizar</button>
-                            
-                        </div>
+                                                                                            <input type="submit" value="Enviar" class="btn btn-outline-primary col-2 btn-lg">
 
-                       
+
+                            {{-- <button type="submit" class="btn btn-outline-primary col-2 btn-lg"><i class="far fa-edit"></i> Actualizar</button> --}}
+                        </div>
                     </form>
                 </div>
             </div>
