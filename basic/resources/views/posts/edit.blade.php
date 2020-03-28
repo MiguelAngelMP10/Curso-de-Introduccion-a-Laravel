@@ -14,6 +14,10 @@
                         </div>
                     @endif
 
+            @if ($errors->any())
+                <p>Hay errores!</p>
+            @endif
+
 
                    <form action="{{ route('posts.update', $post) }}" method="POST" enctype="multipart/form-data">
 
@@ -30,7 +34,7 @@
                                     </div>
                                 </div>
                                 <div class="col-6">
-                                    <img src="{{url('storage/'.$post->image)}}" alt="imagen" class="img-thumbnail float-left rounded">
+                                    <img src="{{ $post->get_image }}" alt="imagen" class="img-thumbnail float-left rounded">
                                 </div>
 
                             </div>

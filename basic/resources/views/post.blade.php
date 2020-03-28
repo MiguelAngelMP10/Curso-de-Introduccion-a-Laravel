@@ -7,7 +7,16 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title">{{ $post->title }}</h5>
+
+                    @if ($post->image)
+                         <img src="{{ $post->get_image }}" alt="imagen" class="img-thumbnail img-fluid card-img-top">
+                       @endif
+                    @if($post->iframe)
+                     <div class="embed-responsive embed-responsive-16by9">
+                         {!! $post->iframe !!}
+                     </div>
+                     @endif
+                    <h class="card-title">{{ $post->title }}</h5>
                     <p class="card-text">
                         {{ $post->body }}
                     </p>
