@@ -14,7 +14,7 @@ class PostControllerTest extends TestCase
 
     public function test_store()
     {
-        $this->withoutExceptionHandling();
+        // $this->withoutExceptionHandling();
         $response = $this->json('POST', '/api/posts', [
             'title' => 'El post de prueba'
         ]);
@@ -38,7 +38,7 @@ class PostControllerTest extends TestCase
 
     public function test_show()
     {
-        $this->withoutExceptionHandling();
+        //  $this->withoutExceptionHandling();
 
         $post = factory(Post::class)->create();
 
@@ -52,10 +52,23 @@ class PostControllerTest extends TestCase
 
     public function test_404_show()
     {
-        //$this->withoutExceptionHandling();
-
         $response = $this->json('GET', '/api/posts/1000'); //id = 1000
 
         $response->assertStatus(404); // no existe
+    }
+
+    public function test_update()
+    {
+        // $this->withoutExceptionHandling();
+        $post = factory(Post::class)->create();
+        $response = $this->json('PUT', "/api/posts/$post->id", [
+            'title' => 'nuevo'
+        ]);
+
+        $response->assertJsonStructure(['id', 'title', 'created_at', 'updated_at'])
+            ->assertJson(['title' => 'nuevo'])
+            ->assertStatus(200); // ok
+
+        $this->assertDatabaseHas('posts', ['title' => 'nuevo']);
     }
 }
